@@ -94,13 +94,41 @@ guard.parse("""
 
 ## API Reference
 
-`__init__`
 
-- `standard_deviations`: Max number of standard deviations that the extracted value should be within. Required for numbers.
-- `threshold`: Average similarity threshold below which the validator will fail. Required for strings.
-- `on_fail`: The policy to enact when a validator fails.
+**`__init__(self, standard_deviations=3, threshold=0.3, on_fail="noop")`**
+<ul>
 
-`parse` :
+Initializes a new instance of the Validator class.
 
-- `metadata` :
-    - `prev_vals` : List of previous values to pass to the validator
+**Parameters:**
+
+- **`standard_deviations`** _(int):_ Max number of standard deviations that the extracted value should be within. Required for numbers. Defaults to 3.
+- **`threshold`** _(float):_ Average similarity threshold below which the validator will fail. Required for strings. Defaults to 0.3.
+- **`on_fail`** *(str, Callable):* The policy to enact when a validator fails. If `str`, must be one of `reask`, `fix`, `filter`, `refrain`, `noop`, `exception` or `fix_reask`. Otherwise, must be a function that is called when the validator fails.
+
+</ul>
+
+<br>
+
+**`__call__(self, value, metadata={}) → ValidationOutcome`**
+
+<ul>
+
+Validates the given `value` using the rules defined in this validator, relying on the `metadata` provided to customize the validation process. This method is automatically invoked by `guard.parse(...)`, ensuring the validation logic is applied to the input data.
+
+Note:
+
+1. This method should not be called directly by the user. Instead, invoke `guard.parse(...)` where this method will be called internally for each associated Validator.
+2. When invoking `guard.parse(...)`, ensure to pass the appropriate `metadata` dictionary that includes keys and values required by this validator. If `guard` is associated with multiple validators, combine all necessary metadata into a single dictionary.
+
+**Parameters:**
+
+- **`value`** *(Any):* The input value to validate.
+- **`metadata`** *(dict):* A dictionary containing metadata required for validation. Keys and values must match the expectations of this validator.
+    
+    
+    | Key | Type | Description | Default |
+    | --- | --- | --- | --- |
+    | `prev_vals` | _list_ | List of previous values to pass to the validator | N/A |
+
+</ul>
