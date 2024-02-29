@@ -10,7 +10,7 @@ from guardrails.validator_base import (
 
 import numpy as np
 
-@register_validator(name="guardrails/similar_to_previous_values", data_type=["string", "int", "float"])
+@register_validator(name="guardrails/similar_to_previous_values", data_type=["string", "integer", "float"])
 class SimilarToPreviousValues(Validator):
     """Validates that a value is similar to a list of previously known values.
 
@@ -19,7 +19,7 @@ class SimilarToPreviousValues(Validator):
     | Property                      | Description                               |
     | ----------------------------- | ----------------------------------------- |
     | Name for `format` attribute   | `guardrails/similar_to_previous_values`   |
-    | Supported data types          | `string`, `int`, `float`                  |
+    | Supported data types          | `string`, `integer`, `float`              |
     | Programmatic fix              | None                                      |
 
     Args:
