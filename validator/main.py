@@ -9,6 +9,7 @@ from guardrails.validator_base import (
 )
 
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
 @register_validator(name="guardrails/similar_to_previous_values", data_type=["string", "integer", "float"])
 class SimilarToPreviousValues(Validator):
@@ -124,10 +125,12 @@ class SimilarToPreviousValues(Validator):
             # Check embed function
             embed_function = metadata.get("embed_function", None)
             if embed_function is None:
-                raise ValueError(
-                    "You must provide `embed_function` in metadata in order to "
-                    "check the semantic similarity of the generated string."
-                )
+                # Load model for embedding function
+                MODEL = SentenceTransformer("paraphrase-MiniLM-L6-v2")
+                # Create embed function
+                def st_embed_function(sources: list[str]):
+                    return MODEL.encode(sources)
+                embed_function = st_embed_function
 
             # Check whether the value is semantically similar to the prev_values
             # Get average semantic similarity
