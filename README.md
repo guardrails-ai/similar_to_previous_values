@@ -144,6 +144,6 @@ Note:
     | Key | Type | Description | Default |
     | --- | --- | --- | --- |
     | `prev_vals` | _list_ | List of previous values to pass to the validator | N/A |
-    | `embed_function` | _Callable_ | Function to embed the input text | N/A |
+    | `embed_function` | _Callable_ | Function to embed the input text | sentence-transformer's `paraphrase-MiniLM-L6-v2` |
 
 </ul>

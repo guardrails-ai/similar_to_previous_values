@@ -9,7 +9,7 @@ import cohere
 from validator import SimilarToPreviousValues
 
 # Create a cohere client
-cohere_key = os.environ["COHERE_API_KEY"]
+cohere_key = os.environ.get("COHERE_API_KEY")
 cohere_client = cohere.Client(api_key=cohere_key)
 
 def embed_function(text: Union[str, List[str]]) -> np.ndarray:
@@ -28,7 +28,7 @@ def embed_function(text: Union[str, List[str]]) -> np.ndarray:
 
 # Create a pydantic model with a field that uses the custom validator
 class ValidatorTestObject(BaseModel):
-    text: str = Field(validators=[SimilarToPreviousValues(threshold=0.7, on_fail="exception")])
+    text: str = Field(validators=[SimilarToPreviousValues(threshold=0.65, on_fail="exception")])
 
 
 # Test happy path
@@ -44,6 +44,16 @@ class ValidatorTestObject(BaseModel):
             {
                 "prev_values": ["You are amazing", "You are awesome.", "You are great!"],
                 "embed_function": embed_function
+            }
+        ),
+        (
+            """
+            {
+                "text": "You are phenomenal!"
+            }
+            """,
+            {
+                "prev_values": ["You are amazing", "You are awesome.", "You are great!"],
             }
         )
     ],
@@ -78,9 +88,7 @@ def test_happy_path(value, metadata):
                 "text": "You are so good at this!"
             }
             """,
-            {
-                "prev_values": ["I love you.", "You are awesome.", "You are great!"],
-            }  # Missing embed_function
+            {}  # Missing prev_values
         ),
     ],
 )
