@@ -118,9 +118,9 @@ is not semantically similar to the previous values. Avg. similarity: 0.24 < Thre
 Initializes a new instance of the Validator class.
 
 **Parameters**
-- **`standard_deviations`** _(int):_ Max number of standard deviations that the extracted value should be within. Required for numbers. Defaults to 3.
-- **`threshold`** _(float):_ Average similarity threshold below which the validator will fail. Required for strings. Defaults to 0.8.
-- **`on_fail`** *(str, Callable):* The policy to enact when a validator fails. If `str`, must be one of `reask`, `fix`, `filter`, `refrain`, `noop`, `exception` or `fix_reask`. Otherwise, must be a function that is called when the validator fails.
+- **`standard_deviations`** _*(int)*:_ Max number of standard deviations that the extracted value should be within. Required for numbers. Defaults to 3.
+- **`threshold`** _*(float)*:_ Average similarity threshold below which the validator will fail. Required for strings. Defaults to 0.8.
+- **`on_fail`** *(str, Callable)*: The policy to enact when a validator fails. If `str`, must be one of `reask`, `fix`, `filter`, `refrain`, `noop`, `exception` or `fix_reask`. Otherwise, must be a function that is called when the validator fails.
 </ul>
 <br/>
 
@@ -134,9 +134,8 @@ Note:
 2. When invoking `guard.parse(...)`, ensure to pass the appropriate `metadata` dictionary that includes keys and values required by this validator. If `guard` is associated with multiple validators, combine all necessary metadata into a single dictionary.
 
 **Parameters**
-
-- **`value`** *(Any):* The input value to validate.
-- **`metadata`** *(dict):* A dictionary containing metadata required for validation. Keys and values must match the expectations of this validator.
+- **`value`** *(Any)*: The input value to validate.
+- **`metadata`** *(dict)*: A dictionary containing metadata required for validation. Keys and values must match the expectations of this validator.
     
     
     | Key | Type | Description | Default |
