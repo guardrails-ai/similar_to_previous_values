@@ -118,8 +118,8 @@ is not semantically similar to the previous values. Avg. similarity: 0.24 < Thre
 Initializes a new instance of the Validator class.
 
 **Parameters**
-- **`standard_deviations`** _*(int)*:_ Max number of standard deviations that the extracted value should be within. Required for numbers. Defaults to 3.
-- **`threshold`** _*(float)*:_ Average similarity threshold below which the validator will fail. Required for strings. Defaults to 0.8.
+- **`standard_deviations`** *(int)*: Max number of standard deviations that the extracted value should be within. Required for numbers. Defaults to 3.
+- **`threshold`** *(float)*: Average similarity threshold below which the validator will fail. Required for strings. Defaults to 0.8.
 - **`on_fail`** *(str, Callable)*: The policy to enact when a validator fails. If `str`, must be one of `reask`, `fix`, `filter`, `refrain`, `noop`, `exception` or `fix_reask`. Otherwise, must be a function that is called when the validator fails.
 </ul>
 <br/>
