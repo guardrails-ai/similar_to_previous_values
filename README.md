@@ -124,7 +124,7 @@ Initializes a new instance of the Validator class.
 </ul>
 <br/>
 
-**`__call__(self, value, metadata={}) → ValidationResult`**
+**`__call__(self, value, metadata={}) -> ValidationResult`**
 <ul>
 Validates the given `value` using the rules defined in this validator, relying on the `metadata` provided to customize the validation process. This method is automatically invoked by `guard.parse(...)`, ensuring the validation logic is applied to the input data.
 
@@ -140,6 +140,6 @@ Note:
     
     | Key | Type | Description | Default |
     | --- | --- | --- | --- |
-    | prev_vals | _list_ | List of previous values to pass to the validator | N/A |
-    | embed_function | _Callable_ | Function to embed the input text | sentence-transformer's `paraphrase-MiniLM-L6-v2` |
+    | `prev_vals` | _list_ | List of previous values to pass to the validator | N/A |
+    | `embed_function` | _Callable_ | Function to embed the input text | sentence-transformer's `paraphrase-MiniLM-L6-v2` |
 </ul>
